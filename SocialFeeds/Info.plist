@@ -2,6 +2,33 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>TwitterConsumerSecret</key>
+	<string>c3PH69TvOzhCGk73gw5qn9lDmBFxM5oMOh8aosMqmRruNq9exO</string>
+	<key>TwitterConsumerKey</key>
+	<string>i0LnoyxsE9Kc3rLdhXLLyuCQd</string>
+	<key>Endpoints</key>
+	<dict>
+		<key>fbPageFeed</key>
+		<string>https://graph.facebook.com/%@/feed</string>
+	</dict>
+	<key>FBAppID</key>
+	<string>177173466206158</string>
+	<key>FBAppSecret</key>
+	<string>ee87195ad7aa400959768061ea79f098</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>twitterkit-i0LnoyxsE9Kc3rLdhXLLyuCQd</string>
+			</array>
+		</dict>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>twitter</string>
+		<string>twitterauth</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>

@@ -1,0 +1,6 @@
+framework module Pods_SocialFeedsUITests {
+  umbrella header "Pods-SocialFeedsUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
