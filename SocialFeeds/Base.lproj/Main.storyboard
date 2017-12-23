@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="XZG-o5-YID">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s22-Sg-4ob">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s22-Sg-4ob">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -30,20 +30,31 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5y-GU-SGU">
-                                                    <rect key="frame" x="9" y="3" width="357" height="93.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <rect key="frame" x="63" y="3" width="297" height="93.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook_icon" translatesAutoresizingMaskIntoConstraints="NO" id="AQr-Kp-UDJ">
+                                                    <rect key="frame" x="15" y="6" width="36" height="36"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="Wy2-Bn-fZB"/>
+                                                        <constraint firstAttribute="width" constant="36" id="mMc-In-J0D"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="B5y-GU-SGU" secondAttribute="bottom" constant="3" id="4he-52-iLL"/>
                                                 <constraint firstItem="B5y-GU-SGU" firstAttribute="top" secondItem="yRc-Gt-gmh" secondAttribute="top" constant="3" id="8IA-ZY-FDZ"/>
-                                                <constraint firstItem="B5y-GU-SGU" firstAttribute="leading" secondItem="yRc-Gt-gmh" secondAttribute="leading" constant="9" id="GBA-ZA-YS1"/>
-                                                <constraint firstAttribute="trailing" secondItem="B5y-GU-SGU" secondAttribute="trailing" constant="9" id="dbH-PE-10g"/>
+                                                <constraint firstItem="AQr-Kp-UDJ" firstAttribute="top" secondItem="yRc-Gt-gmh" secondAttribute="top" constant="6" id="CAe-pi-CqD"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AQr-Kp-UDJ" secondAttribute="bottom" constant="6" id="Eq2-aB-Sqn"/>
+                                                <constraint firstItem="AQr-Kp-UDJ" firstAttribute="leading" secondItem="yRc-Gt-gmh" secondAttribute="leading" constant="15" id="cH2-ux-Zaz"/>
+                                                <constraint firstAttribute="trailing" secondItem="B5y-GU-SGU" secondAttribute="trailing" constant="15" id="dbH-PE-10g"/>
+                                                <constraint firstItem="B5y-GU-SGU" firstAttribute="leading" secondItem="AQr-Kp-UDJ" secondAttribute="trailing" constant="12" id="reM-FP-7US"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="icon" destination="AQr-Kp-UDJ" id="Qte-ej-25F"/>
                                             <outlet property="messageTextLabel" destination="B5y-GU-SGU" id="Egc-ab-Mkj"/>
                                         </connections>
                                     </tableViewCell>
@@ -59,13 +70,35 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="DPg-8I-mOb"/>
                     <connections>
                         <outlet property="tableView" destination="s22-Sg-4ob" id="tB4-JH-P9Z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="136.80000000000001" y="133.5832083958021"/>
+            <point key="canvasLocation" x="890" y="133"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="5YE-AQ-tan">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XZG-o5-YID" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="LQ8-68-C5Y">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gbb-et-KLE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XgT-fO-8jM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="136" y="133.13343328335833"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="facebook_icon" width="60" height="60"/>
+    </resources>
 </document>

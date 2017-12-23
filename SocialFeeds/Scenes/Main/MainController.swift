@@ -34,11 +34,15 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return presenter.numberOfItems
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModel = presenter.viewModel(forRow: indexPath.row)
+        let viewModel = presenter.viewModel(forRow: indexPath.section)
         
         switch viewModel {
         case let fbMessage as FBMessageViewModel:
@@ -56,7 +60,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let viewModel = presenter.viewModel(forRow: indexPath.row)
+        let viewModel = presenter.viewModel(forRow: indexPath.section)
         
         switch viewModel {
         case let tweet as TWTRTweet:
@@ -64,6 +68,16 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         default:
             return UITableViewAutomaticDimension
         }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 5
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.gray
+        return headerView
     }
     
     

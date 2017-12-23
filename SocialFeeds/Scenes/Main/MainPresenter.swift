@@ -55,7 +55,7 @@ final class MainPresenter: MainControllerPresenter {
         fbWorker.fetchMessages { (result) in
             switch result {
             case let .success(messages):
-                self.add(items: messages.map({ FBMessageViewModel($0) }))
+                self.add(items: messages.map({ FBMessageViewModel($0) }).filter({ !$0.messageText.isEmpty }))
                 self.delegate?.didReloadData()
             case let .failure(error):
                 self.delegate?.didFail(with: error.localizedDescription)

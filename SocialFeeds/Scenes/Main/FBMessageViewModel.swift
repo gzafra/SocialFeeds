@@ -12,7 +12,7 @@ final class FBMessageViewModel: SocialFeedItem {
     let fbMessage: FBMessage
     
     var messageText: String {
-        return fbMessage.message ?? "..."
+        return fbMessage.message ?? ""
     }
     
     var sortDate: Date {

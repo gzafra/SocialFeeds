@@ -34,13 +34,4 @@ extension FBMessage: Decodable {
         message = try? container.decode(String.self, forKey: .message)
     }
 }
-//
-//extension FBMessage: Encodable {
-//    public func encode(to encoder: Encoder) throws {
-//        var container = encoder.container(keyedBy: CodingKeys.self)
-//        try container.encode(identifier, forKey: .id)
-//        try container.encode(creationTime, forKey: .created_time)
-//        try container.encode(message, forKey: .message)
-//    }
-//}
 

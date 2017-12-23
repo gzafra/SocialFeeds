@@ -14,9 +14,13 @@ class FBMessageViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+    @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var messageTextLabel: UILabel!
     
     func configure(with message: FBMessageViewModel) {
+        icon.image = ImageKeys.facebookIcon.image
+        icon.layer.cornerRadius = icon.frame.size.height * 0.1
+        icon.clipsToBounds = true
         messageTextLabel.text = message.messageText
     }
 }
