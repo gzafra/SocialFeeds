@@ -11,6 +11,7 @@ struct FBMessage {
     let identifier: String
     let creationTime: Date
     let message: String?
+    var user: FBUser?
     
     enum CodingKeys: String, CodingKey {
         case id

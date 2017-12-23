@@ -10,14 +10,13 @@ import UIKit
 
 final class FBMessageViewModel: SocialFeedItem {
     private let fbMessage: FBMessage
-    private let fbUser: FBUser
     
     var messageText: String {
         return fbMessage.message ?? ""
     }
     
     var searchableText: String {
-        return messageText + fbUser.username
+        return messageText + (fbMessage.user?.username ?? "")
     }
     
     var image: UIImage {
@@ -25,15 +24,14 @@ final class FBMessageViewModel: SocialFeedItem {
     }
     
     var username: String {
-        return fbUser.username
+        return fbMessage.user?.username ?? ""
     }
     
     var sortDate: Date {
         return fbMessage.creationTime
     }
     
-    init(_ message: FBMessage, user: FBUser) {
+    init(_ message: FBMessage) {
         self.fbMessage = message
-        self.fbUser = user
     }
 }

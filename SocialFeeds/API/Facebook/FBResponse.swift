@@ -11,6 +11,15 @@ import Foundation
 struct FBResponse {
     let messages: [FBMessage]
     
+    func messages(withUser user: FBUser) -> [FBMessage] {
+        return messages.map({
+            return FBMessage(identifier: $0.identifier,
+                             creationTime: $0.creationTime,
+                             message: $0.message,
+                             user: user)
+        })
+    }
+    
     enum CodingKeys: String, CodingKey {
         case data
     }

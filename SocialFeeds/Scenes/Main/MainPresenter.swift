@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TwitterKit
 
 protocol MainControllerPresenter {
     var numberOfItems: Int { get }
@@ -31,20 +32,52 @@ protocol SocialFeedItem {
 
 final class MainPresenter: MainControllerPresenter {
     // MARK: - Properties
-    private var dataSource = [SocialFeedItem]()
+    
+    private var tweets = [TWTRTweet]()
+    private var messages = [FBMessageViewModel]()
+    private var dataSource: [SocialFeedItem] {
+        var mergedData = [SocialFeedItem]()
+        mergedData.append(contentsOf: tweets as [SocialFeedItem])
+        mergedData.append(contentsOf: messages as [SocialFeedItem])
+        return mergedData.sorted(by: { $0.sortDate.compare($1.sortDate) == .orderedDescending })
+    }
     private var filterKeyword: String = ""
     private let fbWorker = FBWorker()
     private let twitterWorker = TwitterWorker()
+    private var coreDataWorker: CoreDataWorker!
     fileprivate weak var delegate: MainPresenterDelegate?
     
     init(withDelegate delegate: MainPresenterDelegate) {
         self.delegate = delegate
     }
     
-    private func add(items: [SocialFeedItem]) {
-        // TODO: Ideally SocialFeedItems should be equatable to know if items are duplicated or have changed
-        dataSource.append(contentsOf: items)
-        dataSource.sort(by: { $0.sortDate.compare($1.sortDate) == .orderedDescending })
+    /// Fetchs remote data from different API Services and caches data into Core Data
+    private func loadRemoteData() {
+        // Facebook
+        // TODO: Usually we would query for user/page to get all info needed to create the ViewModel
+        let user = FBUser(identifier: "20528438720", username: "Microsoft")
+        fbWorker.fetchMessages(forUser: user) { (result) in
+            switch result {
+            case let .success(messages):
+                self.messages = messages.map({ FBMessageViewModel($0) }).filter({ !$0.messageText.isEmpty })
+                self.coreDataWorker.save(fbMessages: messages)
+                self.delegate?.shouldRefreshView()
+            case let .failure(error):
+                self.delegate?.display(error: error.localizedDescription)
+            }
+        }
+        
+        // Twitter
+        twitterWorker.fetchTweets { (result) in
+            switch result {
+            case let .success(tweets):
+                self.tweets = tweets
+                self.coreDataWorker.save(tweets: tweets)
+                self.delegate?.shouldRefreshView()
+            case let .failure(error):
+                self.delegate?.display(error: error.localizedDescription)
+            }
+        }
     }
     
     // MARK: - MainControllerPresenter
@@ -57,29 +90,30 @@ final class MainPresenter: MainControllerPresenter {
     }
     
     func viewDidLoad() {
-        // Facebook
-        // TODO: Usually we would query for user/page to get all info needed to create the ViewModel
-        let user = FBUser(identifier: "20528438720", username: "Microsoft")
-        fbWorker.fetchMessages(forUser: user) { (result) in
+        // Setup Core Data
+        coreDataWorker = CoreDataWorker(viewContext: CoreDataStack.shared.persistentContainer.viewContext)
+        
+        coreDataWorker.fetchFBMessages { (result) in
             switch result {
             case let .success(messages):
-                self.add(items: messages.map({ FBMessageViewModel($0, user:user) }).filter({ !$0.messageText.isEmpty }))
+                self.messages = messages.map({ FBMessageViewModel($0) }).filter({ !$0.messageText.isEmpty })
                 self.delegate?.shouldRefreshView()
             case let .failure(error):
                 self.delegate?.display(error: error.localizedDescription)
             }
         }
         
-        // Twitter
-        twitterWorker.fetchTweets { (result) in
+        coreDataWorker.fetchTweets { (result) in
             switch result {
             case let .success(tweets):
-                self.add(items: tweets as [SocialFeedItem])
+                self.tweets = tweets
                 self.delegate?.shouldRefreshView()
             case let .failure(error):
                 self.delegate?.display(error: error.localizedDescription)
             }
         }
+        
+        loadRemoteData()
     }
     
     func viewModel(forRow row: Int) -> SocialFeedItem {

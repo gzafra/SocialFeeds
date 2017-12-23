@@ -21,7 +21,7 @@ final class FBWorker {
         apiClient.execute(request: request) { (result: Result<ApiResponse<FBResponse>>) in
             switch result {
             case let .success(response):
-                completionHandler(.success(response.entity.messages))
+                completionHandler(.success(response.entity.messages(withUser: user)))
             case let .failure(error):
                 completionHandler(.failure(error))
             }

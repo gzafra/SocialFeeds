@@ -34,6 +34,13 @@
 		B64DE81D1FEE5DDA00F96F80 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE81C1FEE5DDA00F96F80 /* DateFormatters.swift */; };
 		B64DE81F1FEE824300F96F80 /* ImageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE81E1FEE824300F96F80 /* ImageKeys.swift */; };
 		B64DE8211FEE94A700F96F80 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE8201FEE94A700F96F80 /* FBUser.swift */; };
+		B64DE8371FEEE69E00F96F80 /* CDTweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE8331FEEE69E00F96F80 /* CDTweet.swift */; };
+		B64DE8381FEEE69E00F96F80 /* CDTweet+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE8341FEEE69E00F96F80 /* CDTweet+CoreDataProperties.swift */; };
+		B64DE8391FEEE69E00F96F80 /* CDFBMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE8351FEEE69E00F96F80 /* CDFBMessage.swift */; };
+		B64DE83A1FEEE69E00F96F80 /* CDFBMessage+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE8361FEEE69E00F96F80 /* CDFBMessage+CoreDataProperties.swift */; };
+		B64DE83D1FEF027600F96F80 /* CoreDataWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE83C1FEF027600F96F80 /* CoreDataWorker.swift */; };
+		B64DE83F1FEF02F800F96F80 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE83E1FEF02F800F96F80 /* CoreDataExtensions.swift */; };
+		B64DE8411FEF06E500F96F80 /* CoreErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE8401FEF06E500F96F80 /* CoreErrors.swift */; };
 		B663590C1FEC551A000E826D /* TwitterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663590B1FEC551A000E826D /* TwitterWorker.swift */; };
 		B663590E1FEC5522000E826D /* FBWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663590D1FEC5522000E826D /* FBWorker.swift */; };
 		B66359101FEC564A000E826D /* ApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663590F1FEC564A000E826D /* ApiErrors.swift */; };
@@ -92,6 +99,13 @@
 		B64DE81C1FEE5DDA00F96F80 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		B64DE81E1FEE824300F96F80 /* ImageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeys.swift; sourceTree = "<group>"; };
 		B64DE8201FEE94A700F96F80 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
+		B64DE8331FEEE69E00F96F80 /* CDTweet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDTweet.swift; sourceTree = "<group>"; };
+		B64DE8341FEEE69E00F96F80 /* CDTweet+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDTweet+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B64DE8351FEEE69E00F96F80 /* CDFBMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDFBMessage.swift; sourceTree = "<group>"; };
+		B64DE8361FEEE69E00F96F80 /* CDFBMessage+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDFBMessage+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B64DE83C1FEF027600F96F80 /* CoreDataWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataWorker.swift; sourceTree = "<group>"; };
+		B64DE83E1FEF02F800F96F80 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
+		B64DE8401FEF06E500F96F80 /* CoreErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreErrors.swift; sourceTree = "<group>"; };
 		B663590B1FEC551A000E826D /* TwitterWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterWorker.swift; sourceTree = "<group>"; };
 		B663590D1FEC5522000E826D /* FBWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBWorker.swift; sourceTree = "<group>"; };
 		B663590F1FEC564A000E826D /* ApiErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiErrors.swift; sourceTree = "<group>"; };
@@ -189,8 +203,11 @@
 		B61201551FEC2E6200BEF025 /* LocalPersistance */ = {
 			isa = PBXGroup;
 			children = (
+				B64DE83B1FEEE84B00F96F80 /* Models */,
 				B612012B1FEC2C2C00BEF025 /* SocialFeeds.xcdatamodeld */,
 				B6272C9B1FED772A002F1394 /* CoreDataStack.swift */,
+				B64DE83C1FEF027600F96F80 /* CoreDataWorker.swift */,
+				B64DE83E1FEF02F800F96F80 /* CoreDataExtensions.swift */,
 			);
 			path = LocalPersistance;
 			sourceTree = "<group>";
@@ -232,6 +249,7 @@
 				B6272C901FED4063002F1394 /* Settings.swift */,
 				B64DE81C1FEE5DDA00F96F80 /* DateFormatters.swift */,
 				B64DE81E1FEE824300F96F80 /* ImageKeys.swift */,
+				B64DE8401FEF06E500F96F80 /* CoreErrors.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -260,6 +278,17 @@
 				B6272C971FED6A05002F1394 /* FBMessageViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		B64DE83B1FEEE84B00F96F80 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B64DE8331FEEE69E00F96F80 /* CDTweet.swift */,
+				B64DE8341FEEE69E00F96F80 /* CDTweet+CoreDataProperties.swift */,
+				B64DE8351FEEE69E00F96F80 /* CDFBMessage.swift */,
+				B64DE8361FEEE69E00F96F80 /* CDFBMessage+CoreDataProperties.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B66359091FEC5502000E826D /* Facebook */ = {
@@ -603,6 +632,7 @@
 				B612015B1FEC302100BEF025 /* Result.swift in Sources */,
 				B6272C8C1FED4010002F1394 /* ApiRequest.swift in Sources */,
 				B6272C9C1FED772A002F1394 /* CoreDataStack.swift in Sources */,
+				B64DE8391FEEE69E00F96F80 /* CDFBMessage.swift in Sources */,
 				B6272C8A1FED3E7E002F1394 /* FBMessage.swift in Sources */,
 				B6272C911FED4063002F1394 /* Settings.swift in Sources */,
 				B66359101FEC564A000E826D /* ApiErrors.swift in Sources */,
@@ -611,15 +641,21 @@
 				B6272C8E1FED401F002F1394 /* FBRequest.swift in Sources */,
 				B663590E1FEC5522000E826D /* FBWorker.swift in Sources */,
 				B6272C9A1FED7420002F1394 /* FBResponse.swift in Sources */,
+				B64DE8381FEEE69E00F96F80 /* CDTweet+CoreDataProperties.swift in Sources */,
+				B64DE83D1FEF027600F96F80 /* CoreDataWorker.swift in Sources */,
 				B6272C981FED6A05002F1394 /* FBMessageViewCell.swift in Sources */,
 				B6272C881FED3E30002F1394 /* MainPresenter.swift in Sources */,
 				B64DE8211FEE94A700F96F80 /* FBUser.swift in Sources */,
 				B61201601FEC342000BEF025 /* ApiResponse.swift in Sources */,
+				B64DE8411FEF06E500F96F80 /* CoreErrors.swift in Sources */,
 				B663590C1FEC551A000E826D /* TwitterWorker.swift in Sources */,
+				B64DE8371FEEE69E00F96F80 /* CDTweet.swift in Sources */,
+				B64DE83A1FEEE69E00F96F80 /* CDFBMessage+CoreDataProperties.swift in Sources */,
 				B64DE81F1FEE824300F96F80 /* ImageKeys.swift in Sources */,
 				B64DE81D1FEE5DDA00F96F80 /* DateFormatters.swift in Sources */,
 				B64DE81B1FEE4D2300F96F80 /* FBMessageViewModel.swift in Sources */,
 				B61201251FEC2C2C00BEF025 /* AppDelegate.swift in Sources */,
+				B64DE83F1FEF02F800F96F80 /* CoreDataExtensions.swift in Sources */,
 				B61201591FEC2FAE00BEF025 /* ApiClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

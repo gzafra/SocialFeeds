@@ -32,6 +32,7 @@ final class TwitterWorker {
             if connectionError != nil {
                 print("Error: \(String(describing: connectionError))")
                 completion(.failure(connectionError!))
+                return
             }
             
             do {
