@@ -16,6 +16,10 @@ final class FBMessageViewModel: SocialFeedItem {
         return fbMessage.message ?? ""
     }
     
+    var searchableText: String {
+        return messageText + fbUser.username
+    }
+    
     var image: UIImage {
         return ImageKeys.placerHolderUser.image
     }

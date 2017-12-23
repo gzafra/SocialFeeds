@@ -14,7 +14,6 @@
 
 
 import UIKit
-import TwitterKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -22,8 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Twitter.sharedInstance().start(withConsumerKey:MainSettings.twitterConsumerKey.key!,
-                                       consumerSecret:MainSettings.twitterConsumerSecret.key!)
+
         return true
     }
 }

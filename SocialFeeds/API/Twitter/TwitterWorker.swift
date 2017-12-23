@@ -13,6 +13,11 @@ typealias TwitterCompletionBlock = (Result<[TWTRTweet]>)->()
 
 final class TwitterWorker {
     
+    init() {
+        Twitter.sharedInstance().start(withConsumerKey:MainSettings.twitterConsumerKey.key!,
+                                       consumerSecret:MainSettings.twitterConsumerSecret.key!)
+    }
+    
     public func fetchTweets(with completion: @escaping TwitterCompletionBlock) {
         let client = TWTRAPIClient()
         // TODO: Move to config
@@ -51,5 +56,9 @@ final class TwitterWorker {
 extension TWTRTweet: SocialFeedItem {
     var sortDate: Date {
         return self.createdAt
+    }
+    
+    var searchableText: String {
+        return self.author.name + self.text
     }
 }

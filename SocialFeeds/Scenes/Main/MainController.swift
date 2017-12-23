@@ -11,11 +11,18 @@ import TwitterKit
 
 class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource, MainPresenterDelegate {
 
+    // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var filterSearchBar: UISearchBar!
+    
+    // MARK: - Properties
     private let tweeCellIdentifier = "TweetCell"
     private let fbCellIdentifier = "FacebookCell"
     private var presenter: MainPresenter!
+    
+    private var filteredItems = [SocialFeedItem]()
  
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -29,9 +36,14 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(TWTRTweetTableViewCell.self, forCellReuseIdentifier: tweeCellIdentifier)
 
-        presenter.viewDidLoad()
+        let dismissTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissSearch))
+        dismissTapRecognizer.cancelsTouchesInView = true
+        tableView.addGestureRecognizer(dismissTapRecognizer)
         
+        presenter.viewDidLoad()
     }
+    
+    // MARK: - UITableViewDataSource
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -58,6 +70,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
     }
 
+    // MARK: - UITableViewDelegate
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let viewModel = presenter.viewModel(forRow: indexPath.section)
@@ -83,12 +96,40 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - MainPresenterDelegate
     
-    func didReloadData() {
+    func shouldRefreshView() {
         tableView.reloadData()
     }
     
-    func didFail(with error: String) {
+    func display(error: String) {
         UIAlertController.showAlert(withMessage: error, title: "Error", fromController: self)
+    }
+}
+
+// MARK: - UISearchBarDelegate
+extension MainController: UISearchBarDelegate {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        self.tableView.reloadData()
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        dismissSearch()
+    }
+
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        presenter.filter(by: "")
+        dismissSearch()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        dismissSearch()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter.filter(by: searchText)
+    }
+    
+    @objc func dismissSearch() {
+        filterSearchBar.resignFirstResponder()
     }
 }
 

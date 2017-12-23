@@ -13,20 +13,26 @@ protocol MainControllerPresenter {
     var title: String { get }
     func viewDidLoad()
     func viewModel(forRow row: Int) -> SocialFeedItem
+    func filter(by keyword: String)
 }
 
 protocol MainPresenterDelegate: class {
-    func didReloadData()
-    func didFail(with error: String)
+    func shouldRefreshView()
+    func display(error: String)
 }
 
 protocol SocialFeedItem {
+    /// Date by which the item will be sorted in the list
     var sortDate: Date { get }
+    
+    /// Raw text used in the search
+    var searchableText: String { get }
 }
 
 final class MainPresenter: MainControllerPresenter {
     // MARK: - Properties
     private var dataSource = [SocialFeedItem]()
+    private var filterKeyword: String = ""
     private let fbWorker = FBWorker()
     private let twitterWorker = TwitterWorker()
     fileprivate weak var delegate: MainPresenterDelegate?
@@ -43,7 +49,7 @@ final class MainPresenter: MainControllerPresenter {
     
     // MARK: - MainControllerPresenter
     var numberOfItems: Int {
-        return dataSource.count
+        return dataSource.filtered(by: filterKeyword).count
     }
     
     var title: String {
@@ -58,9 +64,9 @@ final class MainPresenter: MainControllerPresenter {
             switch result {
             case let .success(messages):
                 self.add(items: messages.map({ FBMessageViewModel($0, user:user) }).filter({ !$0.messageText.isEmpty }))
-                self.delegate?.didReloadData()
+                self.delegate?.shouldRefreshView()
             case let .failure(error):
-                self.delegate?.didFail(with: error.localizedDescription)
+                self.delegate?.display(error: error.localizedDescription)
             }
         }
         
@@ -69,14 +75,26 @@ final class MainPresenter: MainControllerPresenter {
             switch result {
             case let .success(tweets):
                 self.add(items: tweets as [SocialFeedItem])
-                self.delegate?.didReloadData()
+                self.delegate?.shouldRefreshView()
             case let .failure(error):
-                self.delegate?.didFail(with: error.localizedDescription)
+                self.delegate?.display(error: error.localizedDescription)
             }
         }
     }
     
     func viewModel(forRow row: Int) -> SocialFeedItem {
-        return dataSource[row]
+        return dataSource.filtered(by: filterKeyword)[row]
+    }
+    
+    func filter(by keyword: String) {
+        filterKeyword = keyword
+        delegate?.shouldRefreshView()
+    }
+}
+
+extension Sequence where Iterator.Element == SocialFeedItem {
+    func filtered(by keyword: String) -> [SocialFeedItem] {
+        guard !keyword.isEmpty else { return self as! [SocialFeedItem] }
+        return self.filter({ $0.searchableText.localizedCaseInsensitiveContains(keyword) })
     }
 }

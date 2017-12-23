@@ -18,8 +18,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="pho-uP-jDd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="RTy-Bc-eZr"/>
+                                </connections>
+                            </searchBar>
                             <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s22-Sg-4ob">
-                                <rect key="frame" x="6" y="0.0" width="363" height="667"/>
+                                <rect key="frame" x="6" y="120" width="363" height="547"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FacebookCell" rowHeight="100" id="9Kr-Iu-cOl" customClass="FBMessageViewCell" customModule="SocialFeeds" customModuleProvider="target">
@@ -84,8 +91,11 @@
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="s22-Sg-4ob" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NBX-3A-ltz"/>
+                            <constraint firstItem="pho-uP-jDd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1vX-rc-efj"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="pho-uP-jDd" secondAttribute="top" id="P7f-pr-8oX"/>
+                            <constraint firstItem="s22-Sg-4ob" firstAttribute="top" secondItem="pho-uP-jDd" secondAttribute="bottom" id="VPQ-lU-Nq6"/>
                             <constraint firstItem="s22-Sg-4ob" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="cAG-ld-fwU"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pho-uP-jDd" secondAttribute="trailing" id="raR-7d-0qU"/>
                             <constraint firstItem="s22-Sg-4ob" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-6" id="rjR-Sp-oqv"/>
                             <constraint firstItem="s22-Sg-4ob" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="6" id="zjr-yu-EUC"/>
                         </constraints>
@@ -93,6 +103,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="DPg-8I-mOb"/>
                     <connections>
+                        <outlet property="filterSearchBar" destination="pho-uP-jDd" id="LkS-OK-xWy"/>
                         <outlet property="tableView" destination="s22-Sg-4ob" id="tB4-JH-P9Z"/>
                     </connections>
                 </viewController>
