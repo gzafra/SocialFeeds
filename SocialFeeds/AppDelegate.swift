@@ -6,9 +6,9 @@
 //  Copyright © 2017 Guillermo Zafra. All rights reserved.
 //
 
-// TODO: Fix date compare
-// TODO: UI Layout
-// TOOD: Same Datasource for both Tweets and FBMessages
+
+// TODO: Search by words
+// TODO: Cell actions
 // TODO: CoreData cache
 // TODO: Tests
 

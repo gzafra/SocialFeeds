@@ -33,6 +33,7 @@
 		B64DE81B1FEE4D2300F96F80 /* FBMessageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE81A1FEE4D2300F96F80 /* FBMessageViewModel.swift */; };
 		B64DE81D1FEE5DDA00F96F80 /* DateFormatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE81C1FEE5DDA00F96F80 /* DateFormatters.swift */; };
 		B64DE81F1FEE824300F96F80 /* ImageKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE81E1FEE824300F96F80 /* ImageKeys.swift */; };
+		B64DE8211FEE94A700F96F80 /* FBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B64DE8201FEE94A700F96F80 /* FBUser.swift */; };
 		B663590C1FEC551A000E826D /* TwitterWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663590B1FEC551A000E826D /* TwitterWorker.swift */; };
 		B663590E1FEC5522000E826D /* FBWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663590D1FEC5522000E826D /* FBWorker.swift */; };
 		B66359101FEC564A000E826D /* ApiErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = B663590F1FEC564A000E826D /* ApiErrors.swift */; };
@@ -90,6 +91,7 @@
 		B64DE81A1FEE4D2300F96F80 /* FBMessageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBMessageViewModel.swift; sourceTree = "<group>"; };
 		B64DE81C1FEE5DDA00F96F80 /* DateFormatters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatters.swift; sourceTree = "<group>"; };
 		B64DE81E1FEE824300F96F80 /* ImageKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageKeys.swift; sourceTree = "<group>"; };
+		B64DE8201FEE94A700F96F80 /* FBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBUser.swift; sourceTree = "<group>"; };
 		B663590B1FEC551A000E826D /* TwitterWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterWorker.swift; sourceTree = "<group>"; };
 		B663590D1FEC5522000E826D /* FBWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBWorker.swift; sourceTree = "<group>"; };
 		B663590F1FEC564A000E826D /* ApiErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiErrors.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				B6272C891FED3E7E002F1394 /* FBMessage.swift */,
 				B6272C8D1FED401F002F1394 /* FBRequest.swift */,
 				B6272C991FED7420002F1394 /* FBResponse.swift */,
+				B64DE8201FEE94A700F96F80 /* FBUser.swift */,
 			);
 			path = Facebook;
 			sourceTree = "<group>";
@@ -610,6 +613,7 @@
 				B6272C9A1FED7420002F1394 /* FBResponse.swift in Sources */,
 				B6272C981FED6A05002F1394 /* FBMessageViewCell.swift in Sources */,
 				B6272C881FED3E30002F1394 /* MainPresenter.swift in Sources */,
+				B64DE8211FEE94A700F96F80 /* FBUser.swift in Sources */,
 				B61201601FEC342000BEF025 /* ApiResponse.swift in Sources */,
 				B663590C1FEC551A000E826D /* TwitterWorker.swift in Sources */,
 				B64DE81F1FEE824300F96F80 /* ImageKeys.swift in Sources */,

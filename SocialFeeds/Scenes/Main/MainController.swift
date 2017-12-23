@@ -76,7 +76,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = UIView()
-        headerView.backgroundColor = UIColor.gray
+        headerView.backgroundColor = UIColor.clear
         return headerView
     }
     

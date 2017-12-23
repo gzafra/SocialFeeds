@@ -9,17 +9,27 @@
 import UIKit
 
 final class FBMessageViewModel: SocialFeedItem {
-    let fbMessage: FBMessage
+    private let fbMessage: FBMessage
+    private let fbUser: FBUser
     
     var messageText: String {
         return fbMessage.message ?? ""
+    }
+    
+    var image: UIImage {
+        return ImageKeys.placerHolderUser.image
+    }
+    
+    var username: String {
+        return fbUser.username
     }
     
     var sortDate: Date {
         return fbMessage.creationTime
     }
     
-    init(_ message: FBMessage) {
+    init(_ message: FBMessage, user: FBUser) {
         self.fbMessage = message
+        self.fbUser = user
     }
 }

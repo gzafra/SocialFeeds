@@ -52,10 +52,12 @@ final class MainPresenter: MainControllerPresenter {
     
     func viewDidLoad() {
         // Facebook
-        fbWorker.fetchMessages { (result) in
+        // TODO: Usually we would query for user/page to get all info needed to create the ViewModel
+        let user = FBUser(identifier: "20528438720", username: "Microsoft")
+        fbWorker.fetchMessages(forUser: user) { (result) in
             switch result {
             case let .success(messages):
-                self.add(items: messages.map({ FBMessageViewModel($0) }).filter({ !$0.messageText.isEmpty }))
+                self.add(items: messages.map({ FBMessageViewModel($0, user:user) }).filter({ !$0.messageText.isEmpty }))
                 self.delegate?.didReloadData()
             case let .failure(error):
                 self.delegate?.didFail(with: error.localizedDescription)

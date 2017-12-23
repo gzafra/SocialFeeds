@@ -12,13 +12,12 @@ import TwitterKit
 typealias FBCompletionBlock = (Result<[FBMessage]>)->()
 
 final class FBWorker {
-    //https://graph.facebook.com/20528438720/feed?access_token=177173466206158|ee87195ad7aa400959768061ea79f098
-    
-    func fetchMessages(with completionHandler: @escaping FBCompletionBlock) {
+
+    func fetchMessages(forUser user: FBUser, with completionHandler: @escaping FBCompletionBlock) {
         let apiClient = ApiClient(urlSessionConfiguration: URLSessionConfiguration.default,
                                                 completionHandlerQueue: OperationQueue.main)
         
-        let request = FBPageRequest(withPageId: "20528438720")
+        let request = FBPageRequest(withPageId: user.identifier)
         apiClient.execute(request: request) { (result: Result<ApiResponse<FBResponse>>) in
             switch result {
             case let .success(response):

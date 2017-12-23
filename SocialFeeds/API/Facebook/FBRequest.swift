@@ -9,6 +9,9 @@
 import Foundation
 
 struct FBPageRequest: ApiRequest {
+    enum Keys: String {
+        case accessToken = "access_token"
+    }
     let pageId: String
     var urlRequest: URLRequest {
         guard let url = Endpoints.pageFeed.url,
@@ -18,7 +21,7 @@ struct FBPageRequest: ApiRequest {
            fatalError("Error creating FBPageRequest")
          }
         
-        urlComponents.query = "access_token=\(appId)|\(appSecret)"
+        urlComponents.query = "\(Keys.accessToken.rawValue)=\(appId)|\(appSecret)"
         var request = URLRequest(url: urlComponents.url!)
         request.httpMethod = "GET"
         return request

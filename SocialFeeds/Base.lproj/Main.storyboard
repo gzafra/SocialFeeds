@@ -18,55 +18,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s22-Sg-4ob">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <tableView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="s22-Sg-4ob">
+                                <rect key="frame" x="6" y="0.0" width="363" height="667"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FacebookCell" rowHeight="100" id="9Kr-Iu-cOl" customClass="FBMessageViewCell" customModule="SocialFeeds" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="28" width="363" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Kr-Iu-cOl" id="yRc-Gt-gmh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="363" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5y-GU-SGU">
-                                                    <rect key="frame" x="63" y="3" width="297" height="93.5"/>
+                                                    <rect key="frame" x="60" y="28.5" width="288" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebook_icon" translatesAutoresizingMaskIntoConstraints="NO" id="AQr-Kp-UDJ">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AQr-Kp-UDJ">
                                                     <rect key="frame" x="15" y="6" width="36" height="36"/>
+                                                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="Wy2-Bn-fZB"/>
                                                         <constraint firstAttribute="width" constant="36" id="mMc-In-J0D"/>
                                                     </constraints>
                                                 </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebookIcon" translatesAutoresizingMaskIntoConstraints="NO" id="a4K-q5-RQs">
+                                                    <rect key="frame" x="332" y="6" width="16" height="16"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="16" id="VKH-DD-Z0y"/>
+                                                        <constraint firstAttribute="width" constant="16" id="zLH-Nz-7Pv"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USERNAME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P4w-N8-hud">
+                                                    <rect key="frame" x="60" y="6" width="87.5" height="19.5"/>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="B5y-GU-SGU" secondAttribute="bottom" constant="3" id="4he-52-iLL"/>
-                                                <constraint firstItem="B5y-GU-SGU" firstAttribute="top" secondItem="yRc-Gt-gmh" secondAttribute="top" constant="3" id="8IA-ZY-FDZ"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="B5y-GU-SGU" secondAttribute="bottom" constant="6" id="4he-52-iLL"/>
+                                                <constraint firstItem="a4K-q5-RQs" firstAttribute="top" secondItem="yRc-Gt-gmh" secondAttribute="top" constant="6" id="7W8-t0-iqs"/>
                                                 <constraint firstItem="AQr-Kp-UDJ" firstAttribute="top" secondItem="yRc-Gt-gmh" secondAttribute="top" constant="6" id="CAe-pi-CqD"/>
-                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AQr-Kp-UDJ" secondAttribute="bottom" constant="6" id="Eq2-aB-Sqn"/>
+                                                <constraint firstItem="B5y-GU-SGU" firstAttribute="leading" secondItem="P4w-N8-hud" secondAttribute="leading" id="EKT-AF-Hrl"/>
+                                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="AQr-Kp-UDJ" secondAttribute="bottom" priority="750" constant="6" id="Eq2-aB-Sqn"/>
                                                 <constraint firstItem="AQr-Kp-UDJ" firstAttribute="leading" secondItem="yRc-Gt-gmh" secondAttribute="leading" constant="15" id="cH2-ux-Zaz"/>
                                                 <constraint firstAttribute="trailing" secondItem="B5y-GU-SGU" secondAttribute="trailing" constant="15" id="dbH-PE-10g"/>
-                                                <constraint firstItem="B5y-GU-SGU" firstAttribute="leading" secondItem="AQr-Kp-UDJ" secondAttribute="trailing" constant="12" id="reM-FP-7US"/>
+                                                <constraint firstItem="a4K-q5-RQs" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="P4w-N8-hud" secondAttribute="trailing" constant="9" id="kGu-3f-vaN"/>
+                                                <constraint firstItem="B5y-GU-SGU" firstAttribute="top" secondItem="P4w-N8-hud" secondAttribute="bottom" constant="3" id="nWj-lw-Vdt"/>
+                                                <constraint firstItem="P4w-N8-hud" firstAttribute="leading" secondItem="AQr-Kp-UDJ" secondAttribute="trailing" constant="9" id="tVP-lZ-ojX"/>
+                                                <constraint firstAttribute="trailing" secondItem="a4K-q5-RQs" secondAttribute="trailing" constant="15" id="uBD-0C-kui"/>
+                                                <constraint firstItem="P4w-N8-hud" firstAttribute="top" secondItem="yRc-Gt-gmh" secondAttribute="top" constant="6" id="yRO-8I-S39"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="icon" destination="AQr-Kp-UDJ" id="Qte-ej-25F"/>
                                             <outlet property="messageTextLabel" destination="B5y-GU-SGU" id="Egc-ab-Mkj"/>
+                                            <outlet property="networkIcon" destination="a4K-q5-RQs" id="kXO-I0-DvG"/>
+                                            <outlet property="userName" destination="P4w-N8-hud" id="LPe-xC-WR4"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="s22-Sg-4ob" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="NBX-3A-ltz"/>
                             <constraint firstItem="s22-Sg-4ob" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="cAG-ld-fwU"/>
-                            <constraint firstItem="s22-Sg-4ob" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="rjR-Sp-oqv"/>
-                            <constraint firstItem="s22-Sg-4ob" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="zjr-yu-EUC"/>
+                            <constraint firstItem="s22-Sg-4ob" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="-6" id="rjR-Sp-oqv"/>
+                            <constraint firstItem="s22-Sg-4ob" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="6" id="zjr-yu-EUC"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -77,7 +98,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="890" y="133"/>
+            <point key="canvasLocation" x="888.79999999999995" y="132.68365817091455"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5YE-AQ-tan">
@@ -99,6 +120,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="facebook_icon" width="60" height="60"/>
+        <image name="facebookIcon" width="60" height="60"/>
     </resources>
 </document>

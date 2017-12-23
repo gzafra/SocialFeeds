@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 enum ImageKeys: String {
-    case facebookIcon = "facebook_icon"
+    case facebookIcon
+    case placerHolderUser
     
     var image: UIImage  {
         let image = UIImage(named: self.rawValue, in: Bundle.main, compatibleWith: nil)

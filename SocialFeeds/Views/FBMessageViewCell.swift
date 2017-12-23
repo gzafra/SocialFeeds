@@ -15,12 +15,23 @@ class FBMessageViewCell: UITableViewCell {
     }
 
     @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var userName: UILabel!
     @IBOutlet weak var messageTextLabel: UILabel!
+    @IBOutlet weak var networkIcon: UIImageView!
     
     func configure(with message: FBMessageViewModel) {
-        icon.image = ImageKeys.facebookIcon.image
-        icon.layer.cornerRadius = icon.frame.size.height * 0.1
-        icon.clipsToBounds = true
+        icon.image = message.image
+        icon.roundedCorners()
+        networkIcon.image = ImageKeys.facebookIcon.image
+        networkIcon.roundedCorners()
         messageTextLabel.text = message.messageText
+        userName.text = message.username
+    }
+}
+
+private extension UIImageView {
+    func roundedCorners() {
+        self.layer.cornerRadius = self.frame.size.height * 0.1
+        self.clipsToBounds = true
     }
 }
