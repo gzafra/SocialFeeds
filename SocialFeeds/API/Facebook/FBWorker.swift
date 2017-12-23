@@ -14,10 +14,6 @@ typealias FBCompletionBlock = (Result<[FBMessage]>)->()
 final class FBWorker {
     //https://graph.facebook.com/20528438720/feed?access_token=177173466206158|ee87195ad7aa400959768061ea79f098
     
-    init() {
-        Twitter.sharedInstance().start(withConsumerKey:"i0LnoyxsE9Kc3rLdhXLLyuCQd", consumerSecret:"c3PH69TvOzhCGk73gw5qn9lDmBFxM5oMOh8aosMqmRruNq9exO")
-    }
-    
     func fetchMessages(with completionHandler: @escaping FBCompletionBlock) {
         let apiClient = ApiClient(urlSessionConfiguration: URLSessionConfiguration.default,
                                                 completionHandlerQueue: OperationQueue.main)

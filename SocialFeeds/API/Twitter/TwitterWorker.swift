@@ -9,14 +9,15 @@
 import Foundation
 import TwitterKit
 
-typealias TwitterCompletionBlock = ([TWTRTweet])->()
+typealias TwitterCompletionBlock = (Result<[TWTRTweet]>)->()
 
 final class TwitterWorker {
+    
     public func fetchTweets(with completion: @escaping TwitterCompletionBlock) {
         let client = TWTRAPIClient()
         // TODO: Move to config
         let statusesShowEndpoint = "https://api.twitter.com/1.1/statuses/user_timeline.json"
-        let params = ["screen_name": "twitterapi",
+        let params = ["screen_name": "nvidia",
                       "count": "20"]
         var clientError : NSError?
         
@@ -25,6 +26,7 @@ final class TwitterWorker {
         client.sendTwitterRequest(request) { (response, data, connectionError) -> Void in
             if connectionError != nil {
                 print("Error: \(String(describing: connectionError))")
+                completion(.failure(connectionError!))
             }
             
             do {
@@ -34,14 +36,20 @@ final class TwitterWorker {
                         guard let twitterObject = TWTRTweet(jsonDictionary: item) else { continue }
                         tweets.append(twitterObject)
                     }
-                    completion(tweets)
-                    print("json: \(json)")
+                    completion(.success(tweets))
                 }
                 
-            } catch let jsonError as NSError {
-                print("json error: \(jsonError.localizedDescription)")
+            } catch let jsonError {
+                completion(.failure(jsonError))
             }
         }
     }
-    
+}
+
+// MARK: - TWTRTweet Extension
+
+extension TWTRTweet: SocialFeedItem {
+    var sortDate: Date {
+        return self.createdAt
+    }
 }

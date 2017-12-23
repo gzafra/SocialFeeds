@@ -2,6 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoadsInWebContent</key>
+		<true/>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+	</dict>
 	<key>TwitterConsumerSecret</key>
 	<string>c3PH69TvOzhCGk73gw5qn9lDmBFxM5oMOh8aosMqmRruNq9exO</string>
 	<key>TwitterConsumerKey</key>
@@ -9,7 +16,7 @@
 	<key>Endpoints</key>
 	<dict>
 		<key>fbPageFeed</key>
-		<string>https://graph.facebook.com/%@/feed</string>
+		<string>https://graph.facebook.com/%@/posts</string>
 	</dict>
 	<key>FBAppID</key>
 	<string>177173466206158</string>

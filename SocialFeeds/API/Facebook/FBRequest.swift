@@ -8,14 +8,13 @@
 
 import Foundation
 
-//https://graph.facebook.com/20528438720/feed?access_token=177173466206158|ee87195ad7aa400959768061ea79f098
 struct FBPageRequest: ApiRequest {
     let pageId: String
     var urlRequest: URLRequest {
         guard let url = Endpoints.pageFeed.url,
             var urlComponents = URLComponents(string: String(format: url, pageId)),
-            let appId = MainSettings.fbAppId.string,
-            let appSecret = MainSettings.fbAppSecret.string else {
+            let appId = MainSettings.fbAppId.key,
+            let appSecret = MainSettings.fbAppSecret.key else {
            fatalError("Error creating FBPageRequest")
          }
         

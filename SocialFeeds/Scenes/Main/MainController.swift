@@ -9,18 +9,19 @@
 import UIKit
 import TwitterKit
 
-class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class MainController: UIViewController, UITableViewDelegate, UITableViewDataSource, MainPresenterDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     private let tweeCellIdentifier = "TweetCell"
     private let fbCellIdentifier = "FacebookCell"
-    private var items = [AnyObject]()
-    private let fbWorker = FBWorker()
+    private var presenter: MainPresenter!
  
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "Social Feeds"
+        presenter = MainPresenter(withDelegate: self)
+        
+        title = presenter.title
         
         tableView.estimatedRowHeight = 150
         tableView.delegate = self
@@ -28,39 +29,52 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.register(TWTRTweetTableViewCell.self, forCellReuseIdentifier: tweeCellIdentifier)
 
-        fbWorker.fetchMessages { (result) in
-            switch result {
-            case let .success(messages):
-                self.items = messages as [AnyObject]
-                self.tableView.reloadData()
-            case let .failure(error):
-                UIAlertController.showAlert(withMessage: error.localizedDescription, title: "Error", fromController: self)
-            }
-        }
+        presenter.viewDidLoad()
         
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return presenter.numberOfItems
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = items[indexPath.row] as? FBMessage else {
-            fatalError("Incorrect type")
+        let viewModel = presenter.viewModel(forRow: indexPath.row)
+        
+        switch viewModel {
+        case let fbMessage as FBMessageViewModel:
+            let cell = tableView.dequeueReusableCell(withIdentifier: fbCellIdentifier, for: indexPath) as! FBMessageViewCell
+            cell.configure(with: fbMessage)
+            return cell
+        case let tweet as TWTRTweet:
+            let cell = tableView.dequeueReusableCell(withIdentifier: tweeCellIdentifier, for: indexPath) as! TWTRTweetTableViewCell
+            cell.configure(with: tweet)
+            return cell
+        default:
+            fatalError("Unknown ViewModel")
         }
-        
-//        let cell = tableView.dequeueReusableCell(withIdentifier: tweetTableReuseIdentifier, for: indexPath) as! TWTRTweetTableViewCell
-        
-        let cell = tableView.dequeueReusableCell(withIdentifier: fbCellIdentifier, for: indexPath)
-        cell.textLabel?.text = item.message
-//        cell.configure(with: tweet)
-        return cell
     }
 
 
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let tweet = items[indexPath.row]
-//        return TWTRTweetTableViewCell.height(for: tweet, style: TWTRTweetViewStyle.regular, width: self.view.bounds.width, showingActions: false)
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let viewModel = presenter.viewModel(forRow: indexPath.row)
+        
+        switch viewModel {
+        case let tweet as TWTRTweet:
+            return TWTRTweetTableViewCell.height(for: tweet, style: TWTRTweetViewStyle.compact, width: self.view.bounds.width, showingActions: false)
+        default:
+            return UITableViewAutomaticDimension
+        }
+    }
+    
+    
+    // MARK: - MainPresenterDelegate
+    
+    func didReloadData() {
+        tableView.reloadData()
+    }
+    
+    func didFail(with error: String) {
+        UIAlertController.showAlert(withMessage: error, title: "Error", fromController: self)
+    }
 }
 

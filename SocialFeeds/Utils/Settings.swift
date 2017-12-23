@@ -20,7 +20,7 @@ protocol Settings: RawRepresentable where RawValue == String {}
 
 extension Settings {
     /// Returns a string value from the Info.plist for the specific config key
-    var string: String? {
+    var key: String? {
         guard let env = Bundle.main.infoDictionary,
             let configValue = env[self.rawValue] as? String else {
                 return nil

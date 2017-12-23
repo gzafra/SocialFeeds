@@ -22,22 +22,30 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FacebookCell" textLabel="nvH-7e-5Ev" style="IBUITableViewCellStyleDefault" id="9Kr-Iu-cOl">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FacebookCell" rowHeight="100" id="9Kr-Iu-cOl" customClass="FBMessageViewCell" customModule="SocialFeeds" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Kr-Iu-cOl" id="yRc-Gt-gmh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nvH-7e-5Ev">
-                                                    <rect key="frame" x="15" y="0.0" width="345" height="43"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5y-GU-SGU">
+                                                    <rect key="frame" x="9" y="3" width="357" height="93.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="B5y-GU-SGU" secondAttribute="bottom" constant="3" id="4he-52-iLL"/>
+                                                <constraint firstItem="B5y-GU-SGU" firstAttribute="top" secondItem="yRc-Gt-gmh" secondAttribute="top" constant="3" id="8IA-ZY-FDZ"/>
+                                                <constraint firstItem="B5y-GU-SGU" firstAttribute="leading" secondItem="yRc-Gt-gmh" secondAttribute="leading" constant="9" id="GBA-ZA-YS1"/>
+                                                <constraint firstAttribute="trailing" secondItem="B5y-GU-SGU" secondAttribute="trailing" constant="9" id="dbH-PE-10g"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="messageTextLabel" destination="B5y-GU-SGU" id="Egc-ab-Mkj"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

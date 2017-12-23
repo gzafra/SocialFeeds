@@ -11,4 +11,5 @@ import Foundation
 enum ApiErrors: Error {
     case networkError
     case parsingError
+    case decodingError
 }
