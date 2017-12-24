@@ -39,7 +39,7 @@ final class CoreDataWorker {
     
     // MARK: - Saving
     
-    func save(tweets: [TWTRTweet], completionHandler: ((Result<[CDTweet]>) -> Void)? = nil) {
+    func save(tweets: [Tweet], completionHandler: ((Result<[CDTweet]>) -> Void)? = nil) {
         var coreDataTweets = [CDTweet]()
         for tweet in tweets {
             guard let coreDataTweet = viewContext.addEntity(withType: CDTweet.self) else {

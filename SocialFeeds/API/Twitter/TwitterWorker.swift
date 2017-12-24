@@ -9,7 +9,7 @@
 import Foundation
 import TwitterKit
 
-typealias TwitterCompletionBlock = (Result<[TWTRTweet]>)->()
+typealias TwitterCompletionBlock = (Result<[Tweet]>)->()
 
 final class TwitterWorker {
     
@@ -37,9 +37,9 @@ final class TwitterWorker {
             
             do {
                 if let json = try JSONSerialization.jsonObject(with: data!, options: []) as? [[AnyHashable: Any]] {
-                    var tweets = [TWTRTweet]()
+                    var tweets = [Tweet]()
                     for item in json {
-                        guard let twitterObject = TWTRTweet(jsonDictionary: item) else { continue }
+                        guard let twitterObject = Tweet(jsonDictionary: item) else { continue }
                         tweets.append(twitterObject)
                     }
                     completion(.success(tweets))

@@ -54,7 +54,7 @@ final class MainPresenter: MainControllerPresenter {
     /// Fetchs remote data from different API Services and caches data into Core Data
     private func loadRemoteData() {
         // Facebook
-        // TODO: Usually we would query for user/page to get all info needed to create the ViewModel
+        // FIXME: Usually we would query for user/page to get all info needed to create the ViewModel
         let user = FBUser(identifier: "20528438720", username: "Microsoft")
         fbWorker.fetchMessages(forUser: user) { (result) in
             switch result {
@@ -71,7 +71,7 @@ final class MainPresenter: MainControllerPresenter {
         twitterWorker.fetchTweets { (result) in
             switch result {
             case let .success(tweets):
-                self.tweets = tweets
+                self.tweets = tweets.map({ return $0.model })
                 self.coreDataWorker.save(tweets: tweets)
                 self.delegate?.shouldRefreshView()
             case let .failure(error):

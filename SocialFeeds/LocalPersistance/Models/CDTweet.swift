@@ -15,9 +15,9 @@ import TwitterKit
 public class CDTweet: NSManagedObject {}
 
 extension CDTweet {
-    func populate(with tweetModel: TWTRTweet) {
-        let json = try? JSONSerialization.data(withJSONObject: tweetModel, options: .prettyPrinted) as NSData
-        self.jsonData = json
+    func populate(with tweetModel: Tweet) {
+        let data = try? JSONSerialization.data(withJSONObject: tweetModel.jsonDictionary, options: .prettyPrinted) as NSData
+        self.jsonData = data
     }
     
     var tweet: TWTRTweet? {
