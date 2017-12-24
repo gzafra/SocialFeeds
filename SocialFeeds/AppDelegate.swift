@@ -7,8 +7,8 @@
 //
 
 
-// TODO: Cell actions
-// TODO: CoreData cache
+
+// TODO: Twitter API remove hardcoded params
 // TODO: Tests
 
 
