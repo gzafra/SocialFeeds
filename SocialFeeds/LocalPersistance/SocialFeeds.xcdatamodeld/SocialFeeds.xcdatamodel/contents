@@ -8,10 +8,11 @@
         <attribute name="username" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="CDTweet" representedClassName="CDTweet" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="jsonData" attributeType="Binary" syncable="YES"/>
     </entity>
     <elements>
         <element name="CDFBMessage" positionX="-63" positionY="-18" width="128" height="120"/>
-        <element name="CDTweet" positionX="-54" positionY="-9" width="128" height="60"/>
+        <element name="CDTweet" positionX="-54" positionY="-9" width="128" height="75"/>
     </elements>
 </model>

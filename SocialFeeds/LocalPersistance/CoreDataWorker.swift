@@ -40,40 +40,42 @@ final class CoreDataWorker {
     // MARK: - Saving
     
     func save(tweets: [Tweet], completionHandler: ((Result<[CDTweet]>) -> Void)? = nil) {
-        var coreDataTweets = [CDTweet]()
+        var savedTweets = [CDTweet]()
         for tweet in tweets {
-            guard let coreDataTweet = viewContext.addEntity(withType: CDTweet.self) else {
+            let predicate = NSPredicate(format: "identifier==%@", tweet.identifier)
+            guard let coreDataTweet = viewContext.entity(withType: CDTweet.self, predicate: predicate) else {
                 completionHandler?(.failure(CoreErrors.coreDataSaveFailed(message: "Failed saving Tweets in Core Data")))
                 return
             }
             
             coreDataTweet.populate(with: tweet)
-            coreDataTweets.append(coreDataTweet)
+            savedTweets.append(coreDataTweet)
         }
         
         do {
             try viewContext.save()
-            completionHandler?(.success(coreDataTweets))
+            completionHandler?(.success(savedTweets))
         } catch {
             completionHandler?(.failure(CoreErrors.coreDataSaveFailed(message: "Failed saving the context")))
         }
     }
     
     func save(fbMessages: [FBMessage], completionHandler: ((Result<[CDFBMessage]>) -> Void)? = nil) {
-        var coreDataMessages = [CDFBMessage]()
+        var savedMessages = [CDFBMessage]()
         for fbMessage in fbMessages {
-            guard let coreDataMessage = viewContext.addEntity(withType: CDFBMessage.self) else {
+            let predicate = NSPredicate(format: "identifier==%@", fbMessage.identifier)
+            guard let coreDataMessage = viewContext.entity(withType: CDFBMessage.self, predicate: predicate) else {
                 completionHandler?(.failure(CoreErrors.coreDataSaveFailed(message: "Failed saving FBMessage in Core Data")))
                 return
             }
             
             coreDataMessage.populate(with: fbMessage)
-            coreDataMessages.append(coreDataMessage)
+            savedMessages.append(coreDataMessage)
         }
         
         do {
             try viewContext.save()
-            completionHandler?(.success(coreDataMessages))
+            completionHandler?(.success(savedMessages))
         } catch {
             completionHandler?(.failure(CoreErrors.coreDataSaveFailed(message: "Failed saving the context")))
         }

@@ -13,6 +13,7 @@ protocol NSManagedObjectContextProtocol {
     func allEntities<T: NSManagedObject>(withType type: T.Type) throws -> [T]
     func allEntities<T: NSManagedObject>(withType type: T.Type, predicate: NSPredicate?) throws -> [T]
     func addEntity<T: NSManagedObject>(withType type : T.Type) -> T?
+    func entity<T: NSManagedObject>(withType type: T.Type, predicate: NSPredicate) -> T?
     func save() throws
     func delete(_ object: NSManagedObject)
 }
@@ -40,5 +41,13 @@ extension NSManagedObjectContext: NSManagedObjectContextProtocol {
         let record = T(entity: entity, insertInto: self)
         
         return record
+    }
+    
+    func entity<T: NSManagedObject>(withType type: T.Type, predicate: NSPredicate) -> T? {
+        guard let coreDataObjects = try? self.allEntities(withType: type, predicate: predicate),
+            let coreDataObject = coreDataObjects.first else {
+            return addEntity(withType: type)
+        }
+        return coreDataObject
     }
 }

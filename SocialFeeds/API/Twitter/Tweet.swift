@@ -11,11 +11,13 @@ import TwitterKit
 
 
 final class Tweet {
+    let identifier: String
     let jsonDictionary: [AnyHashable: Any]
     let model: TWTRTweet
     
     init?(jsonDictionary: [AnyHashable: Any]) {
         guard let twitterObject = TWTRTweet(jsonDictionary: jsonDictionary) else { return nil }
+        self.identifier = twitterObject.tweetID
         self.jsonDictionary = jsonDictionary
         self.model = twitterObject
     }

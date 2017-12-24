@@ -18,5 +18,6 @@ extension CDTweet {
     }
 
     @NSManaged public var jsonData: NSData?
+    @NSManaged public var identifier: String?
 
 }

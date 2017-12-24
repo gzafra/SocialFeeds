@@ -18,6 +18,7 @@ extension CDTweet {
     func populate(with tweetModel: Tweet) {
         let data = try? JSONSerialization.data(withJSONObject: tweetModel.jsonDictionary, options: .prettyPrinted) as NSData
         self.jsonData = data
+        self.identifier = tweetModel.identifier
     }
     
     var tweet: TWTRTweet? {

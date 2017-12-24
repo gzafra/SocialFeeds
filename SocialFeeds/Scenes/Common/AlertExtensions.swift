@@ -12,6 +12,7 @@ import UIKit
 extension UIAlertController {
     public static func showAlert(withMessage message: String, title: String = "", fromController controller: UIViewController) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         controller.present(alertController, animated: true, completion: nil)
     }
 }
