@@ -6,10 +6,6 @@
 //  Copyright © 2017 Guillermo Zafra. All rights reserved.
 //
 
-
-
-// TODO: Twitter API remove hardcoded params
-
 import UIKit
 
 @UIApplicationMain
