@@ -77,7 +77,7 @@ class MainController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         switch viewModel {
         case let tweet as TWTRTweet:
-            return TWTRTweetTableViewCell.height(for: tweet, style: TWTRTweetViewStyle.compact, width: self.view.bounds.width, showingActions: false)
+            return TWTRTweetTableViewCell.height(for: tweet, style: TWTRTweetViewStyle.compact, width: tableView.bounds.width, showingActions: false)
         default:
             return UITableViewAutomaticDimension
         }
@@ -126,6 +126,9 @@ extension MainController: UISearchBarDelegate {
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         presenter.filter(by: searchText)
+        if searchText.isEmpty {
+            dismissSearch()
+        }
     }
     
     @objc func dismissSearch() {

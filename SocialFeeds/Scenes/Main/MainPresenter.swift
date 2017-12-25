@@ -68,7 +68,7 @@ final class MainPresenter: MainControllerPresenter {
         }
         
         // Twitter
-        twitterWorker.fetchTweets { (result) in
+        twitterWorker.fetchTweets(fromUser: "nvidia") { (result) in
             switch result {
             case let .success(tweets):
                 self.tweets = tweets.map({ return $0.model })

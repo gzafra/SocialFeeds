@@ -86,12 +86,13 @@ class SocialFeedsAPITests: XCTestCase {
     
     func testTwitterWorker() {
         let twitterWorker = TwitterWorker()
-
+        let count = 5
+        
         testExpectation(description: "Querying Twitter API", actionBlock: { (expectation) in
-            twitterWorker.fetchTweets(with: { (result) in
+            twitterWorker.fetchTweets(fromUser: "nvidia", count: count, withCompletion: { (result) in
                 switch result {
                 case .success(let tweets):
-                    XCTAssert(tweets.count > 0)
+                    XCTAssert(tweets.count == count)
                 case .failure(_ ):
                     XCTFail("Request failed")
                     

@@ -13,17 +13,22 @@ typealias TwitterCompletionBlock = (Result<[Tweet]>)->()
 
 final class TwitterWorker {
     
+    enum Keys: String {
+        case screenName = "screen_name"
+        case count
+    }
+    
     init() {
         Twitter.sharedInstance().start(withConsumerKey:MainSettings.twitterConsumerKey.key!,
                                        consumerSecret:MainSettings.twitterConsumerSecret.key!)
     }
     
-    public func fetchTweets(with completion: @escaping TwitterCompletionBlock) {
+    public func fetchTweets(fromUser username: String, count: Int = 20, withCompletion completion: @escaping TwitterCompletionBlock) {
         let client = TWTRAPIClient()
         // TODO: Move to config
         let statusesShowEndpoint = "https://api.twitter.com/1.1/statuses/user_timeline.json"
-        let params = ["screen_name": "nvidia",
-                      "count": "20"]
+        let params = [Keys.screenName.rawValue: username,
+                      Keys.count.rawValue: String(describing: count)]
         var clientError : NSError?
         
         let request = client.urlRequest(withMethod: "GET", url: statusesShowEndpoint, parameters: params, error: &clientError)
