@@ -13,20 +13,9 @@ class SocialFeedsAPITests: XCTestCase {
     private let timeout: TimeInterval = 10.0
     
     // MARK: - Facebook API
-    private var fbMessage: FBMessage? {
-        guard let data = loadJson(withName: "MockFacebookMessage") else {
-            XCTFail("Failed to load json file")
-            return nil
-        }
-        guard let repo = try? JSONDecoder().decode(FBMessage.self, from: data) else {
-            XCTFail("Failed to decode JSON")
-            return nil
-        }
-        return repo
-    }
 
     func testFBMessage() {
-        guard let message = fbMessage else { return }
+        guard let message = fbMessageFromJson else { return }
         
         let expectedDateString = "2017-12-22T23:47:18+0000"
         guard let expectedDate = DateFormatter.iso8601.date(from: expectedDateString) else {
@@ -60,7 +49,7 @@ class SocialFeedsAPITests: XCTestCase {
     }
     
     func testFBMessageViewModel() {
-        guard let message = fbMessage else { return }
+        guard let message = fbMessageFromJson else { return }
     
         let viewModel = FBMessageViewModel(message)
         
@@ -89,23 +78,8 @@ class SocialFeedsAPITests: XCTestCase {
     
     // MARK: - Twitter API
     
-    private var tweet: Tweet? {
-        guard let data = loadJson(withName: "MockTweet") else {
-            XCTFail("Failed to load MockTweet json file")
-            return nil
-        }
-        guard let json = try? JSONSerialization.jsonObject(with: data, options:.allowFragments),
-            let jsonArray = json as? [[AnyHashable: Any]],
-            let dict = jsonArray.first,
-            let tweet = Tweet(jsonDictionary: dict) else {
-            XCTFail("Failed to decode JSON")
-            return nil
-        }
-        return tweet
-    }
-    
     func testTwitterModel() {
-        guard let tweet = tweet else { return }
+        guard let tweet = tweetFromJson else { return }
         XCTAssertEqual(tweet.identifier, tweet.model.tweetID)
         XCTAssertEqual(tweet.model.author.screenName, "twitterapi")
     }

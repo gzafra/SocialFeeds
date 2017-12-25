@@ -20,6 +20,15 @@ struct FBMessage {
     }
 }
 
+extension FBMessage: Equatable {
+    public static func ==(lhs: FBMessage, rhs: FBMessage) -> Bool {
+        return lhs.identifier == rhs.identifier
+            && lhs.message == rhs.message
+            && lhs.creationTime == rhs.creationTime
+    }
+}
+
+
 extension FBMessage: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

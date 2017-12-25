@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import XCTest
 @testable import SocialFeeds
 
 extension FBMessage {
@@ -29,5 +30,34 @@ extension FBMessage {
 extension FBUser {
     static func createUser() -> FBUser {
         return FBUser(identifier: "20528438720", username: "Microsoft")
+    }
+}
+
+extension XCTestCase {
+    var tweetFromJson: Tweet? {
+        guard let data = loadJson(withName: "MockTweet") else {
+            XCTFail("Failed to load MockTweet json file")
+            return nil
+        }
+        guard let json = try? JSONSerialization.jsonObject(with: data, options:.allowFragments),
+            let jsonArray = json as? [[AnyHashable: Any]],
+            let dict = jsonArray.first,
+            let tweet = Tweet(jsonDictionary: dict) else {
+                XCTFail("Failed to decode JSON")
+                return nil
+        }
+        return tweet
+    }
+    
+    var fbMessageFromJson: FBMessage? {
+        guard let data = loadJson(withName: "MockFacebookMessage") else {
+            XCTFail("Failed to load json file")
+            return nil
+        }
+        guard let message = try? JSONDecoder().decode(FBMessage.self, from: data) else {
+            XCTFail("Failed to decode JSON")
+            return nil
+        }
+        return message
     }
 }

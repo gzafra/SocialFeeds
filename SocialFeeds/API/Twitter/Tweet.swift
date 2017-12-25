@@ -9,7 +9,6 @@
 import Foundation
 import TwitterKit
 
-
 final class Tweet {
     let identifier: String
     let jsonDictionary: [AnyHashable: Any]
@@ -22,3 +21,14 @@ final class Tweet {
         self.model = twitterObject
     }
 }
+
+extension Tweet: Equatable {
+    public static func ==(lhs: Tweet, rhs: Tweet) -> Bool {
+        return lhs.identifier == rhs.identifier
+            && lhs.model.author == rhs.model.author
+            && lhs.model.text == rhs.model.text
+            && lhs.model.createdAt == rhs.model.createdAt
+    }
+}
+
+

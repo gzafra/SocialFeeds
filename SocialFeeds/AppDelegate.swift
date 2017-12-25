@@ -9,8 +9,6 @@
 
 
 // TODO: Twitter API remove hardcoded params
-// TODO: Tests
-
 
 import UIKit
 

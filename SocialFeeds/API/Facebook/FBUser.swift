@@ -12,3 +12,12 @@ struct FBUser {
     let identifier: String
     let username: String
 }
+
+
+extension FBUser: Equatable {
+    public static func ==(lhs: FBUser, rhs: FBUser) -> Bool {
+        return lhs.identifier == rhs.identifier
+            && lhs.username == rhs.username
+    }
+}
+
